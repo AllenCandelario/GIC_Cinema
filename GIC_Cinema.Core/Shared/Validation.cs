@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GIC_Cinema.Core.Domain.Entities;
 
 namespace GIC_Cinema.Core.Shared
 {
@@ -72,7 +73,7 @@ namespace GIC_Cinema.Core.Shared
             }
         }
 
-        public static bool TryParseSeatPositionInput(string input, int rows, int seatsPerRow, out List<int> seat)
+        public static bool TryParseSeatPositionInput(string input, int rows, int seatsPerRow, out Seat seat)
         {
             seat = default;
             try
@@ -90,7 +91,7 @@ namespace GIC_Cinema.Core.Shared
                 // Input's subsequent character (confirmed as a valid number) should be within the cinema's boundaries (min 1, max seatsPerRow)
                 if (col < 1 || col > seatsPerRow) throw new Exception("Input for seat position exceeds movie's seat number");
 
-                seat = new List<int> { rowChar - 'A', col - 1 };
+                seat = new Seat( rowChar - 'A', col - 1 );
                 return true;
 
             }

@@ -13,7 +13,7 @@ namespace GIC_Cinema.CLI
         // o = current booking
         // # = other confirmed seats
         // . = empty
-        public static void RenderCinema(CinemaMovie movie, List<List<int>> seatsToBook)
+        public static void RenderCinema(CinemaMovie movie, IReadOnlyList<Seat> seatsToBook)
         {
             Console.WriteLine("          S C R E E N");
             Console.WriteLine("--------------------------------");
@@ -24,10 +24,10 @@ namespace GIC_Cinema.CLI
 
                 for (int c = 0; c < movie.SeatsPerRow; c++)
                 {
-                    List<int> currentSeat = new List<int> { r, c };
+                    Seat currentSeat = new Seat( r, c );
                     char ch = '.';
 
-                    if (seatsToBook.Any(innerList => innerList.SequenceEqual(currentSeat)))
+                    if (seatsToBook.Contains(currentSeat))
                     {
                         ch = 'o';
                     }

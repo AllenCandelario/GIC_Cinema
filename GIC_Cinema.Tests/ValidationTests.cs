@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GIC_Cinema.Core.Shared;
+using GIC_Cinema.Core.Domain.Entities;
 
 namespace GIC_Cinema.Tests
 {
@@ -55,9 +56,9 @@ namespace GIC_Cinema.Tests
         [InlineData("B03", 1, 2)]
         public void ParseSeatPosition_Valid(string input, int expRow, int expCol)
         {
-            Assert.True(Validation.TryParseSeatPositionInput(input, rows: 2, seatsPerRow: 10, out List<int> seat));
-            Assert.Equal(expRow, seat[0]);
-            Assert.Equal(expCol, seat[1]);
+            Assert.True(Validation.TryParseSeatPositionInput(input, rows: 2, seatsPerRow: 10, out Seat seat));
+            Assert.Equal(expRow, seat.Row);
+            Assert.Equal(expCol, seat.Col);
         }
 
         [Theory]

@@ -111,7 +111,7 @@ namespace GIC_Cinema.CLI
                 #endregion
 
                 #region Logic - Default seat allocation
-                List<List<int>> seatsToAllocate = BookingService.DefaultSeatingPreview(movie, seatNumber);
+                List<Seat> seatsToAllocate = BookingService.DefaultSeatingPreview(movie, seatNumber);
                 string bookingId = BookingIdGenerator.GenerateNextBookingId();
                 #endregion
 
@@ -146,7 +146,6 @@ namespace GIC_Cinema.CLI
                     #region Input validation
                     if (!Validation.TryParseSeatPositionInput(seatConfirmOrPosition.Trim(), movie.Rows, movie.SeatsPerRow, out var start))
                     {
-                        Console.WriteLine();
                         continue;
                     }
                     #endregion

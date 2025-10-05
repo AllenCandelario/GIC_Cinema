@@ -9,10 +9,10 @@ namespace GIC_Cinema.Core.Domain.Services
 {
     public class SeatAllocator
     {
-        public static List<List<int>> DefaultAllocation(CinemaMovie movie, int seatNumber)
+        public static List<Seat> DefaultAllocation(CinemaMovie movie, int seatNumber)
         {
             int remainderSeatsToAllocate = seatNumber;
-            List<List<int>> seatsToAllocate = new List<List<int>>();
+            List<Seat> seatsToAllocate = new List<Seat>(seatNumber);
             int startingSeatToCheck = (movie.SeatsPerRow - 1) / 2;
 
 
@@ -25,7 +25,7 @@ namespace GIC_Cinema.Core.Domain.Services
                     {
                         if (!movie.IsSeatOccupied(currentRow, startingSeatToCheck))
                         {
-                            seatsToAllocate.Add(new List<int> { currentRow, startingSeatToCheck });
+                            seatsToAllocate.Add(new Seat(currentRow, startingSeatToCheck));
                             remainderSeatsToAllocate--;
                         }
                     }
@@ -37,7 +37,7 @@ namespace GIC_Cinema.Core.Domain.Services
 
                         if (!movie.IsSeatOccupied(currentRow, currentSeatToCheck))
                         {
-                            seatsToAllocate.Add(new List<int> { currentRow, currentSeatToCheck });
+                            seatsToAllocate.Add(new Seat(currentRow, currentSeatToCheck));
                             remainderSeatsToAllocate--;
                         }
                     }
@@ -48,19 +48,19 @@ namespace GIC_Cinema.Core.Domain.Services
 
 
 
-        public static List<List<int>> AllocateFromPosition(CinemaMovie movie, int seatNumber, List<int> startingPosition)
+        public static List<Seat> AllocateFromPosition(CinemaMovie movie, int seatNumber, Seat startingPosition)
         {
             int remainderSeatsToAllocate = seatNumber;
-            List<List<int>> seatsToAllocate = new List<List<int>>();
-            int startingRow = startingPosition[0];
-            int startingCol = startingPosition[1];
+            List<Seat> seatsToAllocate = new List<Seat>(seatNumber);
+            int startingRow = startingPosition.Row;
+            int startingCol = startingPosition.Col;
 
             // fill to the right on the starting row
             for (int currentCol = startingCol; currentCol < movie.SeatsPerRow && remainderSeatsToAllocate > 0; currentCol++)
             {
                 if (!movie.IsSeatOccupied(startingRow, currentCol))
                 {
-                    seatsToAllocate.Add(new List<int> { startingRow, currentCol });
+                    seatsToAllocate.Add(new Seat(startingRow, currentCol));
                     remainderSeatsToAllocate--;
                 }
             }
@@ -76,7 +76,7 @@ namespace GIC_Cinema.Core.Domain.Services
                     {
                         if (!movie.IsSeatOccupied(currentRow, startingSeatToCheck))
                         {
-                            seatsToAllocate.Add(new List<int> { currentRow, startingSeatToCheck });
+                            seatsToAllocate.Add(new Seat(currentRow, startingSeatToCheck));
                             remainderSeatsToAllocate--;
                         }
                     }
@@ -88,7 +88,7 @@ namespace GIC_Cinema.Core.Domain.Services
 
                         if (!movie.IsSeatOccupied(currentRow, currentSeatToCheck))
                         {
-                            seatsToAllocate.Add(new List<int> { currentRow, currentSeatToCheck });
+                            seatsToAllocate.Add(new Seat ( currentRow, currentSeatToCheck ));
                             remainderSeatsToAllocate--;
                         }
                     }
@@ -105,7 +105,7 @@ namespace GIC_Cinema.Core.Domain.Services
                     {
                         if (!movie.IsSeatOccupied(currentRow, startingSeatToCheck))
                         {
-                            seatsToAllocate.Add(new List<int> { currentRow, startingSeatToCheck });
+                            seatsToAllocate.Add(new Seat (currentRow, startingSeatToCheck ));
                             remainderSeatsToAllocate--;
                         }
                     }
@@ -117,7 +117,7 @@ namespace GIC_Cinema.Core.Domain.Services
 
                         if (!movie.IsSeatOccupied(currentRow, currentSeatToCheck))
                         {
-                            seatsToAllocate.Add(new List<int> { currentRow, currentSeatToCheck });
+                            seatsToAllocate.Add(new Seat ( currentRow, currentSeatToCheck ));
                             remainderSeatsToAllocate--;
                         }
                     }

@@ -12,16 +12,16 @@ namespace GIC_Cinema.Core.Application.Services
     {
         public static bool CanBook(CinemaMovie movie, int seatCount) => seatCount >= 1 && seatCount <= movie.AvailableSeats;
 
-        public static List<List<int>> DefaultSeatingPreview(CinemaMovie movie, int seatCount) => SeatAllocator.DefaultAllocation(movie, seatCount);
+        public static List<Seat> DefaultSeatingPreview(CinemaMovie movie, int seatCount) => SeatAllocator.DefaultAllocation(movie, seatCount);
 
-        public static List<List<int>> SelectedSeatingPreview(CinemaMovie movie, int seatCount, List<int> start) => SeatAllocator.AllocateFromPosition(movie, seatCount, start);
+        public static List<Seat> SelectedSeatingPreview(CinemaMovie movie, int seatCount, Seat start) => SeatAllocator.AllocateFromPosition(movie, seatCount, start);
 
-        public static void Confirm(CinemaMovie movie, string bookingId, List<List<int>> allocatedSeats)
+        public static void Confirm(CinemaMovie movie, string bookingId, List<Seat> allocatedSeats)
         {
             var booking = new Booking(bookingId, allocatedSeats);
             movie.ConfirmBooking(booking);
         }
 
-        public static List<List<int>> GetBookingSeats(CinemaMovie movie, string bookingId) => movie.GetBookingSeats(bookingId);
+        public static IReadOnlyList<Seat> GetBookingSeats(CinemaMovie movie, string bookingId) => movie.GetBookingSeats(bookingId);
     }
 }
