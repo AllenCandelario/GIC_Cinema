@@ -11,12 +11,12 @@ namespace GIC_Cinema.Core.Domain.Entities
     public sealed class Booking
     {
         public string Id { get; }
-        public List<List<int>> AllocatedSeats { get; }
+        public IReadOnlyList<Seat> AllocatedSeats { get; }
 
-        public Booking(string bookingId, List<List<int>> seatsToAllocate)
+        public Booking(string bookingId, List<Seat> seatsToAllocate)
         {
             Id = bookingId;
-            AllocatedSeats = seatsToAllocate;
+            AllocatedSeats = seatsToAllocate.AsReadOnly();
         }
     }
 }

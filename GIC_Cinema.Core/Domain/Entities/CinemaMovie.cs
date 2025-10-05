@@ -63,12 +63,12 @@ namespace GIC_Cinema.Core.Domain.Entities
 
         public void ConfirmBooking(Booking booking)
         {
-            foreach (List<int> seat in booking.AllocatedSeats)
-                _seatMatrix[seat[0], seat[1]] = true;
+            foreach (Seat seat in booking.AllocatedSeats)
+                _seatMatrix[seat.Row, seat.Col] = true;
             _bookings[booking.Id] = booking;
         }
 
-        public List<List<int>>? GetBookingSeats(string bookingId)
+        public IReadOnlyList<Seat>? GetBookingSeats(string bookingId)
             => _bookings.TryGetValue(bookingId, out var b) ? b.AllocatedSeats : null;
     }
 }
