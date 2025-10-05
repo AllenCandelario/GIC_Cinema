@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GIC_Cinema.Core", "GIC_Cinema.Core\GIC_Cinema.Core.csproj", "{55483C5F-BEFF-495A-BD9F-0A1D9B1A1FEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GIC_Cinema.CLI", "GIC_Cinema.CLI\GIC_Cinema.CLI.csproj", "{040FEC37-D59A-41D1-A3D0-5D1547281C58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GIC_Cinema.Tests", "GIC_Cinema.Tests\GIC_Cinema.Tests.csproj", "{6D258349-F6FA-4D13-BBFE-080D2D82B008}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55483C5F-BEFF-495A-BD9F-0A1D9B1A1FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55483C5F-BEFF-495A-BD9F-0A1D9B1A1FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55483C5F-BEFF-495A-BD9F-0A1D9B1A1FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55483C5F-BEFF-495A-BD9F-0A1D9B1A1FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{040FEC37-D59A-41D1-A3D0-5D1547281C58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{040FEC37-D59A-41D1-A3D0-5D1547281C58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{040FEC37-D59A-41D1-A3D0-5D1547281C58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{040FEC37-D59A-41D1-A3D0-5D1547281C58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D258349-F6FA-4D13-BBFE-080D2D82B008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D258349-F6FA-4D13-BBFE-080D2D82B008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D258349-F6FA-4D13-BBFE-080D2D82B008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D258349-F6FA-4D13-BBFE-080D2D82B008}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
