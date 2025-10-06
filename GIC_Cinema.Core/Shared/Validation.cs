@@ -79,7 +79,7 @@ namespace GIC_Cinema.Core.Shared
             try
             {
                 // Input should have at least 3 characters check for e.g. B03, A14
-                if (input.Length < 2) throw new Exception("Input should contain at least 3 characters");
+                if (input.Length < 3) throw new Exception("Input should contain at least 3 characters");
 
                 // Input's first character should be within A - Z
                 var rowChar = char.ToUpperInvariant(input[0]);

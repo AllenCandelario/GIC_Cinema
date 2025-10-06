@@ -13,6 +13,7 @@ namespace GIC_Cinema.Tests
         [Theory]
         [InlineData("Inception 8 10", "Inception", 8, 10)]
         [InlineData("The Dark Knight 1 1", "The Dark Knight", 1, 1)]
+        [InlineData(" ExtraSpaces 1  1 ", "ExtraSpaces", 1, 1)]
         public void ParseCinemaCreation_Valid(string input, string title, int rows, int seats)
         {
             Assert.True(Validation.TryParseCinemaCreationInput(input, out var t, out var r, out var s));
@@ -53,7 +54,9 @@ namespace GIC_Cinema.Tests
 
         [Theory]
         [InlineData("A01", 0, 0)]
+        [InlineData("A015", 1, 2)]
         [InlineData("B03", 1, 2)]
+        [InlineData("b03", 1, 2)]
         public void ParseSeatPosition_Valid(string input, int expRow, int expCol)
         {
             Assert.True(Validation.TryParseSeatPositionInput(input, rows: 2, seatsPerRow: 10, out Seat seat));
@@ -62,10 +65,13 @@ namespace GIC_Cinema.Tests
         }
 
         [Theory]
-        [InlineData("Z99")]   // row out of range
+        [InlineData("Z09")]   // row out of range
         [InlineData("A00")]   // col zero
-        [InlineData("A11")]   // col exceeds seatsPerRow (when seatsPerRow=10)
+        [InlineData("A11")]   // col out of range (when seatsPerRow=10)
         [InlineData("1A")]    // bad format
+        [InlineData("B3")]    // no leading zeroes
+        [InlineData("A0x")]   // non-digit columns 1
+        [InlineData("A-1")]   // non-digit columns 2
         public void ParseSeatPosition_Invalid(string input)
         {
             Assert.False(Validation.TryParseSeatPositionInput(input, rows: 2, seatsPerRow: 10, out _));
