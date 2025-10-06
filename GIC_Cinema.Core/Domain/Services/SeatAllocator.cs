@@ -18,8 +18,9 @@ namespace GIC_Cinema.Core.Domain.Services
 
             for (int currentRow = 0; currentRow < movie.Rows && remainderSeatsToAllocate > 0; currentRow++)
             {
+                int before = seatsToAllocate.Count;
                 FillRowMiddleOut(movie, currentRow, remainderSeatsToAllocate, seatsToAllocate);
-                remainderSeatsToAllocate -= seatsToAllocate.Count;
+                remainderSeatsToAllocate -= (seatsToAllocate.Count - before);
             }
             return seatsToAllocate;
         }
@@ -36,8 +37,9 @@ namespace GIC_Cinema.Core.Domain.Services
             {
                 if (!movie.IsSeatOccupied(startingRow, currentCol))
                 {
+                    int before = seatsToAllocate.Count;
                     seatsToAllocate.Add(new Seat(startingRow, currentCol));
-                    remainderSeatsToAllocate--;
+                    remainderSeatsToAllocate -= (seatsToAllocate.Count - before);
                 }
             }
 
@@ -45,15 +47,17 @@ namespace GIC_Cinema.Core.Domain.Services
             int startingSeatToCheck = (movie.SeatsPerRow - 1) / 2;
             for (int currentRow = startingRow + 1; currentRow < movie.Rows && remainderSeatsToAllocate > 0; currentRow++)
             {
+                int before = seatsToAllocate.Count;
                 FillRowMiddleOut(movie, currentRow, remainderSeatsToAllocate, seatsToAllocate);
-                remainderSeatsToAllocate -= seatsToAllocate.Count;
+                remainderSeatsToAllocate -= (seatsToAllocate.Count - before);
             }
 
             // overflow back to furthest row if there are still remaining seats
             for (int currentRow = 0; currentRow < movie.Rows && remainderSeatsToAllocate > 0; currentRow++)
             {
+                int before = seatsToAllocate.Count;
                 FillRowMiddleOut(movie, currentRow, remainderSeatsToAllocate, seatsToAllocate);
-                remainderSeatsToAllocate -= seatsToAllocate.Count;
+                remainderSeatsToAllocate -= (seatsToAllocate.Count - before);
             }
             return seatsToAllocate;
         }

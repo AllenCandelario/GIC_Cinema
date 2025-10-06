@@ -56,10 +56,15 @@ namespace GIC_Cinema.CLI
                 Console.WriteLine();
                 #endregion
 
-                #region Input Validation
-                if (!Validation.TryParseCinemaCreationInput(cinemaCreationInput, out var title, out var rows, out var seatsPerRow))
+                #region Input & Domain Validation
+                if (!Validation.TryParseCinemaCreationInput_CLI(cinemaCreationInput, out var title, out var rows, out var seatsPerRow, out string cli_error))
                 {
-                    Console.WriteLine();
+                    Console.WriteLine($"{cli_error}\n");
+                    continue;
+                }
+                if (!Validation.TryParseCinemaCreationInput_Domain(title, rows, seatsPerRow, out string domain_error))
+                {
+                    Console.WriteLine($"{domain_error}\n");
                     continue;
                 }
                 #endregion
@@ -89,19 +94,24 @@ namespace GIC_Cinema.CLI
                 Console.WriteLine();
                 #endregion
 
-                #region Input validation (accepts blank input)
+                #region Input & Domain validation (accepts blank input)
                 if (string.IsNullOrEmpty(seatNumberInput))
                 {
                     return;
                 }
-                if (!Validation.TryParseSeatNumberInput(seatNumberInput, out int seatNumber))
+                if (!Validation.TryParseSeatNumberInput_CLI(seatNumberInput, out int seatNumber, out string cli_error))
                 {
-                    Console.WriteLine();
+                    Console.WriteLine($"{cli_error}\n");
+                    continue;
+                }
+                if (!Validation.TryParseSeatNumberInput_Domain(seatNumber, out string domain_error))
+                {
+                    Console.WriteLine($"{domain_error}\n");
                     continue;
                 }
                 #endregion
 
-                #region Application validation
+                #region Logic - Check for available seats
                 if (!BookingService.CanBook(movie, seatNumber))
                 {
                     Console.WriteLine($"Sorry, there are only {movie.AvailableSeats} seats available.");
@@ -126,7 +136,6 @@ namespace GIC_Cinema.CLI
                 while (true)
                 {
                     #region Console read
-                    Console.WriteLine();
                     Console.WriteLine("Enter blank to accept seat selection, or enter new seating position:");
                     Console.Write("> ");
                     var seatConfirmOrPosition = Console.ReadLine();
@@ -143,9 +152,15 @@ namespace GIC_Cinema.CLI
                     }
                     #endregion
 
-                    #region Input validation
-                    if (!Validation.TryParseSeatPositionInput(seatConfirmOrPosition.Trim(), movie.Rows, movie.SeatsPerRow, out var start))
+                    #region Input & Domain validation
+                    if (!Validation.TryParseSeatPositionInput_CLI(seatConfirmOrPosition.Trim(), movie.Rows, movie.SeatsPerRow, out var start, out string cli_error2))
                     {
+                        Console.WriteLine($"{cli_error2}\n");
+                        continue;
+                    }
+                    if (!Validation.TryParseSeatPositionInput_Domain(movie.Rows, movie.SeatsPerRow, start, out string domain_error2))
+                    {
+                        Console.WriteLine($"{domain_error2}\n");
                         continue;
                     }
                     #endregion
