@@ -9,6 +9,7 @@ export default defineConfig({
       '/cinema': { target: 'https://localhost:7085', changeOrigin: true, secure: false },
       '/cinemalayout': { target: 'https://localhost:7085', changeOrigin: true, secure: false },
       '/bookings': { target: 'https://localhost:7085', changeOrigin: true, secure: false },
+      '/reset': { target: 'https://localhost:7085', changeOrigin: true, secure: false },
     }
   }
 })

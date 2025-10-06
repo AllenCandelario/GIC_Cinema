@@ -288,7 +288,7 @@ export default function App() {
           </div>
           {bookingId && (
             <div style={{ marginTop: 8, fontSize: 14, color: "#333" }}>
-              Preview booking id: <strong>{bookingId}</strong>
+              Booking ID: <strong>{bookingId}</strong>
             </div>
           )}
           <div style={{display:"flex", gap:8}}>
