@@ -70,6 +70,7 @@ namespace GIC_Cinema.CLI
                 #endregion
 
                 #region Logic
+                BookingIdGenerator.ResetBookingId();
                 try
                 {
                     CinemaMovie movie = new CinemaMovie(title, rows, seatsPerRow);
