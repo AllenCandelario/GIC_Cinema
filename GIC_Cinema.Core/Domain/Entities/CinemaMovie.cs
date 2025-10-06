@@ -70,5 +70,7 @@ namespace GIC_Cinema.Core.Domain.Entities
 
         public IReadOnlyList<Seat>? GetBookingSeats(string bookingId)
             => _bookings.TryGetValue(bookingId, out var b) ? b.AllocatedSeats : null;
+
+        public IEnumerable<Booking> GetAllBookings() => _bookings.Values;
     }
 }

@@ -15,5 +15,15 @@ namespace GIC_Cinema.Core.Shared
         {
             return $"GIC{(++_counter).ToString("D4", CultureInfo.InvariantCulture)}";
         }
+
+        public static string PeekNextBookingId()
+        {
+            return $"GIC{(_counter + 1).ToString("D4", CultureInfo.InvariantCulture)}";
+        }
+
+        public static void ResetBookingId()
+        {
+            _counter = 0;
+        }
     }
 }
