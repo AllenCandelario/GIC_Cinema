@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GIC_Cinema.Core.Shared;
+﻿using GIC_Cinema.Core.Shared;
 using GIC_Cinema.Core.Domain.Entities;
 
 namespace GIC_Cinema.Tests

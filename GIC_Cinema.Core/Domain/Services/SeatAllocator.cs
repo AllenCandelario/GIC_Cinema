@@ -1,9 +1,4 @@
 ﻿using GIC_Cinema.Core.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GIC_Cinema.Core.Domain.Services
 {

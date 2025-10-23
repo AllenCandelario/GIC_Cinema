@@ -1,6 +1,5 @@
 ﻿using GIC_Cinema.Core.Application.Services;
 using GIC_Cinema.Core.Domain.Entities;
-using GIC_Cinema.Core.Domain.Services;
 using GIC_Cinema.Core.Shared;
 
 namespace GIC_Cinema.CLI
